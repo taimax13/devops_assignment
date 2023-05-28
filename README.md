@@ -1,5 +1,5 @@
 # devops_assignment
-**Assignment Title: Creation of a Helm Chart including Application and Database**
+**Creation of a Helm Chart including Application and Database**
 
 **Objective:**
 
