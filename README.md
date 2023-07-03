@@ -21,9 +21,14 @@ run from the source folder
   ``` helm install application-chart application-release --values values.yaml``` 
 
 3. **Helm Chart:** Create a Helm chart that includes at least:
+   please note here 2 ways of expose application service.yaml and ingress.yaml for application. On actuall deployment will be used only one of them 
+
+   service is an abstraction that provides a consistent way to access and load balance traffic to a set of pods. It acts as a stable endpoint for other services or external clients within the cluster. Services can be exposed internally within the cluster (ClusterIP), exposed externally using a NodePort or LoadBalancer, or used for communication between services (e.g., using a Headless Service). Services operate at the transport layer (Layer 4) and can handle TCP and UDP traffic.
+
+   Ingress is an API object that manages external access to services within a cluster. It provides a way to route and control HTTP and HTTPS traffic to different services based on rules defined by the user. 
 
    - A Deployment for the application. It should use the Docker image you've created.
-   - A Deployment for the database. It should use the official PostgreSQL Docker image.
+   - A Deployment for the database. It should use the official PostgreSQL Docker image. hmmm - why not to run from bitnami? 
    - A Service to expose the application to the network.
    - A Service to expose the database within the cluster (it should not be accessible from outside the cluster).
    - Liveness and Readiness probes. These should be defined in your Deployments to check the health of your application and database.
