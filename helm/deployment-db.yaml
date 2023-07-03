@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "test-app.fullname" . }}-db
+  labels:
+    app: {{ include "test-app.name" . }}-db
+spec:
+  replicas: 1  # Set the number of replicas as per your requirements
+  selector:
+    matchLabels:
+      app: {{ include "test-app.name" . }}-db
+  template:
+    metadata:
+      labels:
+        app: {{ include "test-app.name" . }}-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest  # Use the official PostgreSQL image
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.database.name }}
+            - name: POSTGRES_USER
+              value: {{ .Values.database.username }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.database.password }}
+          ports:
+            - containerPort: 5432  # Expose the PostgreSQL port
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          emptyDir: {}

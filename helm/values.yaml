@@ -1,0 +1,14 @@
+image:
+  repository: docker.io/library  ##local registry should br potentially replaces with some artifactory, ecr , etc
+  tag: test-v0.1.1 ##any tag
+
+replicaCount: 4
+
+database: ##docker run --name postgress-test -h postgress -e POSTGRES_PASSWORD=mypassword -e POSTGRES_USER=myuser -d postgres
+  host: postgress
+  port: 5432
+  username: myuser
+  password: mypassword
+  name: postgres
+
+

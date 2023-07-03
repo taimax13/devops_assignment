@@ -1,15 +1,24 @@
 # devops_assignment
 **Creation of a Helm Chart including Application and Database**
 
-**Objective:**
-
-Your task is to create a Helm chart for deploying the sample application along with its database in a Kubernetes cluster. The chart should include Kubernetes Deployments, Services, Liveness and Readiness Probes and Volumes.
 
 **Details:**
 
-1. **Application and Deployment:** Your provided with Dockerfile and source code.
+1. **Application and Deployment:** 
 
-2. **Database and Deployment:** For the purpose of this assignment, use a PostgreSQL database. It should be containerized using its official Docker image. 
+Please choose the regestry to upload you image 
+run from the source folder 
+```docker build . -t test-v0.1.1```
+```docker tag test-v0.1.1 <regestry-tag>```
+```docker pusg <regestry-tag>```
+
+2. **Database and Deployment:** 
+
+- Please use official installation of https://artifacthub.io/packages/helm/bitnami/postgresql - for postgress
+- Please run:
+ ```helm package application-chart.yaml```
+  and then deploy it using:
+  ``` helm install application-chart application-release --values values.yaml``` 
 
 3. **Helm Chart:** Create a Helm chart that includes at least:
 
