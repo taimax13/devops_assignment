@@ -34,3 +34,15 @@ spec:
               value: {{ .Values.database.password }}
             - name: DATABASE_NAME
               value: {{ .Values.database.name }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 10    
